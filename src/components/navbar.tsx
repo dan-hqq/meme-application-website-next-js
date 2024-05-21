@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button"
 import { SheetTrigger, SheetContent, Sheet } from "@/components/ui/sheet"
 import { useSession } from "next-auth/react"
 import { Avatar, Dropdown } from "flowbite-react";
+import { JSX, SVGProps } from "react"
 
 export function Navbar() {
 
@@ -130,7 +131,7 @@ export function Navbar() {
   )
 }
 
-function MenuIcon(props) {
+function MenuIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -152,7 +153,7 @@ function MenuIcon(props) {
 }
 
 
-function MountainIcon(props) {
+function MountainIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
