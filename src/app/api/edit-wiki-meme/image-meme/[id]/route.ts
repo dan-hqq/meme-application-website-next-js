@@ -50,9 +50,3 @@ export async function PUT(req: NextRequest, { params } : { params: { id: string 
         return NextResponse.json({status: 500, success: false, error: error});
     }
 }
-
-// export const config = {
-//     api: {
-//       bodyParser: false,
-//     },
-// };

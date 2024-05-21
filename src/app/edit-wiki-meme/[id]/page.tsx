@@ -208,6 +208,7 @@ export default function EditWikiMeme() {
                   width={800}
                   height={0}
                   className="rounded-lg"
+                  style={{position: "relative", zIndex: -1}}
                 />
               </div>
               <input
@@ -227,6 +228,7 @@ export default function EditWikiMeme() {
                   width={800}
                   height={0}
                   className="rounded-lg"
+                  style={{position: "relative", zIndex: -1}}
                 />
               </div>
               <input

@@ -114,6 +114,7 @@ export default function WikiMeme() {
                                 width={800}
                                 height={0}
                                 className="rounded-lg"
+                                style={{position: "relative", zIndex: -1}}
                             />
                         </div>
                         <hr className="border-b-2 border-gray-300 dark:border-gray-700 mb-8" />
@@ -129,6 +130,7 @@ export default function WikiMeme() {
                                 width={800}
                                 height={0}
                                 className="rounded-lg"
+                                style={{position: "relative", zIndex: -1}}
                             />
                         </div>
                     </div>
