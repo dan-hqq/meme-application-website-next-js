@@ -88,7 +88,7 @@ async function getUserId(email: string, username: string, image: string): Promis
   try {
     // Mencari pengguna berdasarkan email
     // const { rows } = await sql`SELECT * FROM posts WHERE likes > ${likes};`
-    const { rows } = await pool.query(`SELECT id FROM users WHERE email = ${email}`);
+    const { rows } = await pool.query(`SELECT id FROM users WHERE email = '${email}'`);
 
     // Jika pengguna ditemukan, kembalikan userId
     if (rows.length > 0) {
@@ -97,7 +97,7 @@ async function getUserId(email: string, username: string, image: string): Promis
     }
 
     // Jika pengguna tidak ditemukan, buat pengguna baru dan kembalikan userId
-    const createResult = await pool.query(`INSERT INTO users (email, username, image) VALUES (${email}, ${username}, ${image}) RETURNING id`);
+    const createResult = await pool.query(`INSERT INTO users (email, username, image) VALUES ('${email}', '${username}', '${image}') RETURNING id`);
     console.log(createResult);
     return createResult.rows[0].id;
   } catch (error) {
