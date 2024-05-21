@@ -51,8 +51,8 @@ export async function PUT(req: NextRequest, { params } : { params: { id: string 
     }
 }
 
-export const config = {
-    api: {
-      bodyParser: false,
-    },
-};
+// export const config = {
+//     api: {
+//       bodyParser: false,
+//     },
+// };

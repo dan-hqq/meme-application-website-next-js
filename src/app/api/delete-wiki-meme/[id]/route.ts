@@ -25,8 +25,8 @@ export async function DELETE(req: NextRequest, { params } : { params: { id: stri
     }
 }
 
-export const config = {
-    api: {
-      bodyParser: false,
-    },
-};
+// export const config = {
+//     api: {
+//       bodyParser: false,
+//     },
+// };
