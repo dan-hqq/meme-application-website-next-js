@@ -42,7 +42,7 @@ import "next-auth/jwt"
 import { sql } from "@vercel/postgres";
 
 export const authConfig: NextAuthOptions = {
-  secret: process.env.AUTH_SECRET as string,
+  secret: process.env.NEXTAUTH_SECRET as string,
   providers: [
     GitHub({
       clientId: process.env.AUTH_GITHUB_ID as string,
