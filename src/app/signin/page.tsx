@@ -34,7 +34,6 @@ import { SignInButton } from "@/components/auth/signin-button";
 import { getServerSession } from "next-auth";
 import { authConfig } from "@/auth";
 import { redirect } from "next/navigation";
-import { getCsrfToken } from "next-auth/react";
 
 export default async function SignInPage() {
   const session = await getServerSession(authConfig);

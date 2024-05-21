@@ -39,7 +39,8 @@
 import { NextAuthOptions, DefaultSession } from "next-auth";
 import GitHub from "next-auth/providers/github";
 import "next-auth/jwt"
-import { sql } from "@vercel/postgres";
+// import { sql } from "@vercel/postgres";
+import pool from "./lib/db";
 
 export const authConfig: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET as string,
@@ -52,7 +53,7 @@ export const authConfig: NextAuthOptions = {
   callbacks: {
     async signIn({ user, account, profile }) {
       // Mencari atau membuat pengguna dalam database
-      const userId = await getUserId(user.email!, user.name!);
+      const userId = await getUserId(user.email!, user.name!, user.image!);
 
       // Menambahkan userId ke session
       user.userId = userId;
@@ -83,11 +84,11 @@ export const authConfig: NextAuthOptions = {
   }
 } satisfies NextAuthOptions;
 
-async function getUserId(email: string, username: string): Promise<string> {
+async function getUserId(email: string, username: string, image: string): Promise<string> {
   try {
     // Mencari pengguna berdasarkan email
     // const { rows } = await sql`SELECT * FROM posts WHERE likes > ${likes};`
-    const { rows } = await sql`SELECT id FROM users WHERE email = ${email}`;
+    const { rows } = await pool.query(`SELECT id FROM users WHERE email = ${email}`);
 
     // Jika pengguna ditemukan, kembalikan userId
     if (rows.length > 0) {
@@ -96,7 +97,7 @@ async function getUserId(email: string, username: string): Promise<string> {
     }
 
     // Jika pengguna tidak ditemukan, buat pengguna baru dan kembalikan userId
-    const createResult = await sql`INSERT INTO users (email, username) VALUES (${email}, ${username}) RETURNING id`;
+    const createResult = await pool.query(`INSERT INTO users (email, username, image) VALUES (${email}, ${username}, ${image}) RETURNING id`);
     console.log(createResult);
     return createResult.rows[0].id;
   } catch (error) {

@@ -10,9 +10,8 @@ import Link from "next/link"
 import { NavigationMenuLink, NavigationMenuItem, NavigationMenuTrigger, NavigationMenuContent, NavigationMenuList, NavigationMenu } from "@/components/ui/navigation-menu"
 import { Button } from "@/components/ui/button"
 import { SheetTrigger, SheetContent, Sheet } from "@/components/ui/sheet"
-import { useSession } from "next-auth/react"
+import { signOut, useSession } from "next-auth/react"
 import { Avatar, Dropdown } from "flowbite-react";
-import { JSX, SVGProps } from "react"
 
 export function Navbar() {
 
@@ -82,7 +81,7 @@ export function Navbar() {
                   <span className="block truncate text-sm font-medium">{session?.user?.email}</span>
                 </Dropdown.Header>
                 <Dropdown.Divider />
-                <Dropdown.Item><p className="text-red-500">Sign Out</p></Dropdown.Item>
+                <Dropdown.Item onClick={() => signOut()}><p className="text-red-500">Logout</p></Dropdown.Item>
               </Dropdown>
             )
             :
