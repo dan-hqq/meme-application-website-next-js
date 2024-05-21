@@ -70,37 +70,37 @@ export function Navbar() {
         <div className="ml-auto flex items-center">
           {
             status === "authenticated" ?
-              (
-                <Dropdown
-                  label={<Avatar alt="User settings" img={session?.user?.image} rounded />}
-                  arrowIcon={false}
-                  inline
-                >
-                  <Dropdown.Header>
-                    <span className="block text-sm">{session.user.name}</span>
-                    <span className="block truncate text-sm font-medium">{session?.user?.email}</span>
-                  </Dropdown.Header>
-                  <Dropdown.Divider />
-                  <Dropdown.Item>Sign out</Dropdown.Item>
-                </Dropdown>
-              )
-              :
-              (
-                <NavigationMenu className="hidden lg:flex">
-                  <NavigationMenuList>
-                    <NavigationMenuItem>
-                      <NavigationMenuLink asChild>
-                        <Link
-                          className="group inline-flex h-9 w-max items-center justify-center rounded-md  px-4 py-2 text-sm font-medium transition-colors text-blue dark:text-blue hover:bg-blue-100 hover:text-gray-900 focus:bg-blue-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-blue-100/50 data-[state=open]:bg-blue-100/50 dark:hover:bg-blue-800 dark:hover:text-gray-50 dark:focus:bg-blue-800 dark:focus:text-blue-50 dark:data-[active]:bg-blue-800/50 dark:data-[state=open]:bg-blue-800/50"
-                          href="/signin"
-                        >
-                          Login
-                        </Link>
-                      </NavigationMenuLink>
-                    </NavigationMenuItem>
-                  </NavigationMenuList>
-                </NavigationMenu>
-              )
+            (
+              <Dropdown
+                label={<Avatar alt="User settings" img={session?.user?.image ?? "https://gravatar.com/avatar/37b8f62b0022031fcb7b838592896ad7?s=400&d=robohash&r=x"} rounded />}
+                arrowIcon={false}
+                inline
+              >
+                <Dropdown.Header>
+                  <span className="block text-sm">{session?.user?.name ?? ""}</span>
+                  <span className="block truncate text-sm font-medium">{session?.user?.email}</span>
+                </Dropdown.Header>
+                <Dropdown.Divider />
+                <Dropdown.Item><p className="text-red-500">Sign Out</p></Dropdown.Item>
+              </Dropdown>
+            )
+            :
+            (
+              <NavigationMenu className="hidden lg:flex">
+                <NavigationMenuList>
+                  <NavigationMenuItem>
+                    <NavigationMenuLink asChild>
+                      <Link
+                        className="group inline-flex h-9 w-max items-center justify-center rounded-md  px-4 py-2 text-sm font-medium transition-colors text-blue dark:text-blue hover:bg-blue-100 hover:text-gray-900 focus:bg-blue-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-blue-100/50 data-[state=open]:bg-blue-100/50 dark:hover:bg-blue-800 dark:hover:text-gray-50 dark:focus:bg-blue-800 dark:focus:text-blue-50 dark:data-[active]:bg-blue-800/50 dark:data-[state=open]:bg-blue-800/50"
+                        href="/signin"
+                      >
+                        Login
+                      </Link>
+                    </NavigationMenuLink>
+                  </NavigationMenuItem>
+                </NavigationMenuList>
+              </NavigationMenu>
+            )
           }
         </div>
       </header>
