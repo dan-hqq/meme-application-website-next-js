@@ -16,7 +16,7 @@ export function SignInButton() {
         rounded-lg focus:shadow-outline hover:bg-slate-200
       "
     >
-      <Image src="" alt="GitHub Logo" width={20} height={20} />
+      <Image src="/githublogo.png" alt="GitHub Logo" width={30} height={30} />
       <span className="ml-4">Continue with GitHub</span>
     </button>
   )
