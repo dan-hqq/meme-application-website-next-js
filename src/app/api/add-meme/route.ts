@@ -1,7 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import cloudinary from '@/lib/cloudinary';
 import multer from 'multer';
-// import { po } from '@vercel/postgres';
 import pool from '@/lib/db';
 import { getServerSession } from 'next-auth';
 import { authConfig } from '@/auth';
@@ -12,14 +11,10 @@ const upload = multer({ storage });
 
 export async function POST(req: NextRequest, res: NextResponse) {
 
-    // const { memeName, description } = req.body;
     const formData = await req.formData();
-    const memeName = formData.get("memeName") as string;
-    const description = formData.get("description") as string;
-    const memeImageTemp = formData.get("memeImage") as File;
-    const memeExampleTemp = formData.get("memeExample") as File;
-    const memeImageBuffer = Buffer.from(await memeImageTemp.arrayBuffer());
-    const memeExampleBuffer = Buffer.from(await memeExampleTemp.arrayBuffer());
+    const caption = formData.get("caption") as string;
+    const imageMemeTemp = formData.get("imageMeme") as File;
+    const imageMemeBuffer = Buffer.from(await imageMemeTemp.arrayBuffer());
     // const buffer = Buffer.from(await image.arrayBuffer());
 
 
@@ -43,11 +38,14 @@ export async function POST(req: NextRequest, res: NextResponse) {
         const session = await getServerSession(authConfig);
         
         if(session){
-            const memeImageUrl = await uploadToCloudinary(memeImageBuffer);
-            const memeExampleUrl = await uploadToCloudinary(memeExampleBuffer);
-            const createResult = await pool.query(`INSERT INTO wikimemes (memename, description, memeimage, memeexample) VALUES ('${memeName}', '${description}', '${memeImageUrl}', '${memeExampleUrl}') RETURNING id`);
-            const memeId = createResult.rows[0].id;
-            return NextResponse.json({status: 200, success: true, message: 'Meme Added Succesfully', redirectTo: `/wiki-meme/${memeId}` });
+
+            const { rows } = await pool.query(`SELECT id FROM users WHERE email = '${session.user?.email}' AND username = '${session.user?.name}'`);
+
+            const userId = rows[0].id;
+
+            const imageMemeUrl = await uploadToCloudinary(imageMemeBuffer);
+            await pool.query(`INSERT INTO memes (userid, imagememe, caption) VALUES ('${userId}', '${imageMemeUrl}', '${caption}')`);
+            return NextResponse.json({status: 200, success: true, message: 'Meme Added Succesfully'});
         }
     } 
     catch (error) {
