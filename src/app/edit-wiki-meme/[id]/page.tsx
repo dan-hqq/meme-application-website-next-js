@@ -209,6 +209,7 @@ export default function EditWikiMeme() {
                   height={0}
                   className="rounded-lg"
                   style={{position: "relative", zIndex: -1}}
+                  priority
                 />
               </div>
               <input
@@ -229,6 +230,7 @@ export default function EditWikiMeme() {
                   height={0}
                   className="rounded-lg"
                   style={{position: "relative", zIndex: -1}}
+                  priority
                 />
               </div>
               <input

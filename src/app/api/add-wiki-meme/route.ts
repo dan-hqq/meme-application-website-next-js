@@ -55,9 +55,3 @@ export async function POST(req: NextRequest, res: NextResponse) {
         return NextResponse.json({status: 500, success: false, error: error});
     }
 }
-
-// export const config = {
-//     api: {
-//       bodyParser: false,
-//     },
-// };
