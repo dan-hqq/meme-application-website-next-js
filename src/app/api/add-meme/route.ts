@@ -44,7 +44,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
             const userId = rows[0].id;
 
             const imageMemeUrl = await uploadToCloudinary(imageMemeBuffer);
-            await pool.query(`INSERT INTO memes (userid, imagememe, caption) VALUES ('${userId}', '${imageMemeUrl}', '${caption}')`);
+            const result = await pool.query(`INSERT INTO memes (userid, imagememe, caption) VALUES ('${userId}', '${imageMemeUrl}', '${caption}')`);
             return NextResponse.json({status: 200, success: true, message: 'Meme Added Succesfully'});
         }
     } 
