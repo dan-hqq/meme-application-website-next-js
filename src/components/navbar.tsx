@@ -77,8 +77,8 @@ export function Navbar() {
                 inline
               >
                 <Dropdown.Header>
-                  <span className="block text-sm">{session?.user?.name ?? ""}</span>
-                  <span className="block truncate text-sm font-medium">{session?.user?.email}</span>
+                  <span className="block text-sm text-white">{session?.user?.name ?? ""}</span>
+                  <span className="block truncate text-sm font-medium text-white">{session?.user?.email}</span>
                 </Dropdown.Header>
                 <Dropdown.Divider />
                 <Dropdown.Item onClick={() => signOut()}><p className="text-red-500">Logout</p></Dropdown.Item>

@@ -11,7 +11,9 @@ export default function Home() {
 
   useEffect(() => {
     const fetchMemes = async () => {
-      const response = await fetch(`/api/list-meme`);
+      const response = await fetch(`/api/list-meme`,{
+        method: "GET"
+      });
       const data = await response.json();
       setMemes(data.data);
     };
