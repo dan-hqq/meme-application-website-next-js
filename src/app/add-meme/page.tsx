@@ -67,7 +67,7 @@ export default function AddMeme() {
                     imageMeme: null,
                     caption: ""
                 });
-                router.push('/add-meme');
+                window.location.href = '/add-meme';
             }
             else {
                 throw new Error('Failed to add product');
