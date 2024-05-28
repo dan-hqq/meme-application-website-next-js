@@ -106,7 +106,7 @@ export function Navbar() {
       </header>
       <Sheet>
         <SheetTrigger asChild>
-          <Button className="lg:hidden fixed" size="icon" variant="outline">
+          <Button className="lg:hidden fixed left-4 top-4" size="icon" variant="outline">
             <MenuIcon className="h-6 w-6" />
             <span className="sr-only">Toggle navigation menu</span>
           </Button>
