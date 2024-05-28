@@ -12,7 +12,7 @@ export async function GET(req: NextRequest, res: NextResponse) {
         const result = await pool.query(`SELECT * FROM wikimemes WHERE memename ILIKE '%${queryString}%' ORDER BY memename OFFSET (${page} - 1) * 8 LIMIT 8;`);
         // console.log(result);
         const count = await pool.query(`SELECT COUNT(*) FROM wikimemes WHERE memename ILIKE '%${queryString}%'`);
-        return NextResponse.json({status: 200, success: true, data: result.rows, totalPages: count.rowCount});
+        return NextResponse.json({status: 200, success: true, data: result.rows, totalPages: count.rows[0].count});
     } 
     catch (error) {
         console.error(error);

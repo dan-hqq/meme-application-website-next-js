@@ -26,7 +26,7 @@ export default function Home () {
         const response = await fetch(`/api/list-wiki-meme?page=${currentPage}&search=${searchQuery}`);
         const data = await response.json();
         setMemes(data.data);
-        setTotalPages(data.totalPages);
+        setTotalPages(data.totalPages / 8 + 1);
         setIsLoading(false);
       };
 
