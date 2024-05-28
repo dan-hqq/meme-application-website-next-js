@@ -19,7 +19,7 @@ export function Navbar() {
 
   return (
     <>
-      <header className="fixed top-0 left-0 flex h-20 w-full shrink-0 items-center px-4 md:px-6 backdrop-blur-md z-1">
+      <header className="fixed top-0 left-0 flex h-20 w-full shrink-0 items-center px-4 md:px-6 backdrop-blur-md">
         <Link className="mr-6 hidden lg:flex" href="/">
           <MountainIcon className="h-6 w-6" />
           <span className="">Dann&apos;s Meme</span>
@@ -106,7 +106,7 @@ export function Navbar() {
       </header>
       <Sheet>
         <SheetTrigger asChild>
-          <Button className="lg:hidden" size="icon" variant="outline">
+          <Button className="lg:hidden fixed" size="icon" variant="outline">
             <MenuIcon className="h-6 w-6" />
             <span className="sr-only">Toggle navigation menu</span>
           </Button>

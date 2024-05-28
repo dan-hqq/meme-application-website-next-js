@@ -13,8 +13,8 @@ export default function Home() {
     const fetchMemes = async () => {
       const response = await fetch(`/api/list-meme`,{
         method: "GET",
-        next: {
-           revalidate: 0
+        headers: {
+          'Cache-Control': 'no-store'
         }
       });
       const data = await response.json();
