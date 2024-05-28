@@ -12,7 +12,10 @@ export default function Home() {
   useEffect(() => {
     const fetchMemes = async () => {
       const response = await fetch(`/api/list-meme`,{
-        method: "GET"
+        method: "GET",
+        next: {
+           revalidate: 0
+        }
       });
       const data = await response.json();
       setMemes(data.data);
