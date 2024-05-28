@@ -11,7 +11,11 @@ export async function GET(req: NextRequest, res: NextResponse) {
             ORDER BY memes.id DESC
         `);
         // console.log(result);
-        return NextResponse.json({status: 200, success: true, data: result.rows}).headers.set('Cache-Control', 'no-store, max-age=0');
+        return NextResponse.json({status: 200, success: true, data: result.rows} , {
+            headers: {
+              'Cache-Control': 'no-store, max-age=0',
+            }
+        });
     } 
     catch (error) {
         console.error(error);
